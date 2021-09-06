@@ -1,7 +1,6 @@
 const knex = require("../db/connection");
 
 function list() {
-    console.log(1);
     return knex("movies").select("*").groupBy("movies.movie_id");
 }
 
@@ -13,7 +12,12 @@ function listIsShowing() {
         .groupBy("movies.movie_id");
 }
 
+function read(movie_id) {
+    return knex("movies").select("*").where({ movie_id }).first();
+}
+
 module.exports = {
     list,
     listIsShowing,
+    read,
 };
